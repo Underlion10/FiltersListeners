@@ -44,11 +44,13 @@ public class FilterSign implements Filter {
 			ResultSet rs = stm.executeQuery("select * from users where nombre = '" + nombre + "'");
 			if(!rs.next()) {
 				request.setAttribute("incorrect", true);
+				request.setAttribute("type", 2);
 			}
 			rs.beforeFirst();
 			while(rs.next()) {
 				if(!rs.getString(3).equals(request.getParameter("password"))) {
 					request.setAttribute("incorrect", true);
+					request.setAttribute("type", 2);
 				}
 			}
 		} catch (SQLException e) {

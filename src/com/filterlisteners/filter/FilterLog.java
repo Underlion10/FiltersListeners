@@ -45,6 +45,7 @@ public class FilterLog implements Filter {
 			ResultSet rs = stm.executeQuery("select * from users where nombre = '" + nombre + "'");
 			if(rs.next()) {
 				request.setAttribute("incorrect", true);
+				request.setAttribute("type", 1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

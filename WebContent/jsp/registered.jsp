@@ -7,7 +7,7 @@
 <title>Estás registrado</title>
 </head>
 <body>
-	<p><%= session.getAttribute("nombre") %></p>
+	<p>Enhorabuena, te has registrado <%= session.getAttribute("nombre") %>, comprueba en phpmyadmin tu id de sesión actual.</p>
 	<a href="closeSession" id="close">
 		<p>Cerrar sesión</p>
 	</a>

@@ -57,7 +57,7 @@ public class LogInServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else {
-			response.sendRedirect("/PruebaFiltrosListeners");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 

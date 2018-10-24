@@ -34,11 +34,11 @@ public class SignInServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getAttribute("incorrect") == null) {
-			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/jsp/registered.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/registered.jsp");
 			request.getSession().setAttribute("nombre", request.getParameter("nombre"));
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("/PruebaFiltrosListeners");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 
