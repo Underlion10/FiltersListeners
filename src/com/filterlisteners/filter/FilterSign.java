@@ -47,7 +47,7 @@ public class FilterSign implements Filter {
 			}
 			rs.beforeFirst();
 			while(rs.next()) {
-				if(rs.getString(2).equals(request.getAttribute("nombre"))) {
+				if(!rs.getString(3).equals(request.getParameter("password"))) {
 					request.setAttribute("incorrect", true);
 				}
 			}
