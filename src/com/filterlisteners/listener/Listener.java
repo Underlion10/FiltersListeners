@@ -33,7 +33,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     	Statement stm;
 		try {
 			stm = conn.createStatement();
-			stm.executeUpdate("update users set actualSession = " + 
+			stm.executeUpdate("update users set actual_session = " + 
 			se.getSession().getId() + " where username = " + username);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     	Statement stm;
 		try {
 			stm = conn.createStatement();
-			stm.executeUpdate("update users set actualSession = null" + " where username = " + username);
+			stm.executeUpdate("update users set actual_session = null" + " where username = " + username);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -75,7 +75,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     	try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/baseEjemplo?useLegacyDatetimeCode=" + "false&serverTimezone=GMT", "root", "");
+					"jdbc:mysql://localhost/filters?useLegacyDatetimeCode=" + "false&serverTimezone=GMT", "root", "");
 			sce.getServletContext().setAttribute("dbConn", conn);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
