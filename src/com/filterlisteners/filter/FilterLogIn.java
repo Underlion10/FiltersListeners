@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class FilterLogIn
  */
-@WebFilter("/FilterLogIn")
+@WebFilter("/logIn")
 public class FilterLogIn implements Filter {
 
     /**

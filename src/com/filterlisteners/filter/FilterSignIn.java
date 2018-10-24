@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class FilterLogin
  */
-@WebFilter("/signin")
+@WebFilter("/signIn")
 public class FilterSignIn implements Filter {
 
     /**
@@ -46,7 +46,6 @@ public class FilterSignIn implements Filter {
 				request.setAttribute("incorrect", true);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		chain.doFilter(request, response);
