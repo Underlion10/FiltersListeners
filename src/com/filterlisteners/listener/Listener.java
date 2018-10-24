@@ -21,6 +21,9 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     /**
      * Default constructor. 
      */
+    /**
+     * 
+     */
     public Listener() {
     }
 
@@ -28,17 +31,6 @@ public class Listener implements ServletContextListener, HttpSessionListener {
      * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
      */
     public void sessionCreated(HttpSessionEvent se)  {
-    	Connection conn = (Connection) se.getSession().getServletContext().getAttribute("dbConn");
-    	String username = (String) se.getSession().getAttribute("nombre");
-    	System.out.println(username);
-    	Statement stm;
-		try {
-			stm = conn.createStatement();
-			stm.executeUpdate("update users set actual_session = '" + 
-			se.getSession().getId() + "' where nombre = '" + username + "'");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
     }
 
 	/**
