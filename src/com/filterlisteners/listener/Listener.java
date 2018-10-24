@@ -30,6 +30,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se)  {
     	Connection conn = (Connection) se.getSession().getServletContext().getAttribute("dbConn");
     	String username = (String) se.getSession().getAttribute("nombre");
+    	System.out.println(username);
     	Statement stm;
 		try {
 			stm = conn.createStatement();
