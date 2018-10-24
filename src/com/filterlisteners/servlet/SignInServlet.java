@@ -1,6 +1,8 @@
 package com.filterlisteners.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +34,9 @@ public class SignInServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getAttribute("incorrect") == null) {
-			request.getServletContext().getRequestDispatcher("jsp/registered.jsp");
+			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/jsp/registered.jsp");
 			request.getSession().setAttribute("nombre", request.getParameter("nombre"));
+			rd.forward(request, response);
 		} else {
 			response.sendRedirect("/PruebaFiltrosListeners");
 		}

@@ -8,5 +8,8 @@
 </head>
 <body>
 	<p><%= session.getAttribute("nombre") %></p>
+	<a href="closeSession" id="close">
+		<p>Cerrar sesión</p>
+	</a>
 </body>
 </html>

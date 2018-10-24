@@ -29,7 +29,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
      */
     public void sessionCreated(HttpSessionEvent se)  {
     	Connection conn = (Connection) se.getSession().getServletContext().getAttribute("dbConn");
-    	String username = (String) se.getSession().getAttribute("user");
+    	String username = (String) se.getSession().getAttribute("nombre");
     	Statement stm;
 		try {
 			stm = conn.createStatement();
@@ -45,11 +45,11 @@ public class Listener implements ServletContextListener, HttpSessionListener {
      */
     public void sessionDestroyed(HttpSessionEvent se)  {
     	Connection conn = (Connection) se.getSession().getServletContext().getAttribute("dbConn");
-    	String username = (String) se.getSession().getAttribute("user");
+    	String username = (String) se.getSession().getAttribute("nombre");
     	Statement stm;
 		try {
 			stm = conn.createStatement();
-			stm.executeUpdate("update users set actual_session = ''" + " where username = '" + username + "'");
+			stm.executeUpdate("update users set actual_session = ''" + " where nombre = '" + username + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

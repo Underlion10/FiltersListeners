@@ -42,6 +42,10 @@ public class FilterSign implements Filter {
 		try {
 			stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery("select * from users where nombre = '" + nombre + "'");
+			if(!rs.next()) {
+				request.setAttribute("incorrect", true);
+			}
+			rs.beforeFirst();
 			while(rs.next()) {
 				if(rs.getString(2).equals(request.getAttribute("nombre"))) {
 					request.setAttribute("incorrect", true);
