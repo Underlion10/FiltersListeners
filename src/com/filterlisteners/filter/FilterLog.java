@@ -15,15 +15,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 /**
- * Servlet Filter implementation class FilterLogIn
+ * Servlet Filter implementation class FilterLogin
  */
 @WebFilter("/logIn")
-public class FilterLogIn implements Filter {
+public class FilterLog implements Filter {
 
     /**
      * Default constructor. 
      */
-    public FilterLogIn() {
+    public FilterLog() {
     }
 
 	/**
@@ -36,16 +36,15 @@ public class FilterLogIn implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		String nombre = (String) request.getAttribute("nombre");
+		String nombre = (String) request.getParameter("nombre");
+		System.out.println(nombre + ", verificando a través del filtro");
 		Connection conn = (Connection) request.getServletContext().getAttribute("dbConn");
 		Statement stm;
 		try {
 			stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery("select * from users where nombre = '" + nombre + "'");
-			while(rs.next()) {
-				if(rs.getString(2).equals(request.getAttribute("nombre"))) {
-					request.setAttribute("incorrect", true);
-				}
+			if(rs.next()) {
+				request.setAttribute("incorrect", true);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,7 +56,6 @@ public class FilterLogIn implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

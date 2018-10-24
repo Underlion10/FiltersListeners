@@ -15,15 +15,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 /**
- * Servlet Filter implementation class FilterLogin
+ * Servlet Filter implementation class FilterLogIn
  */
 @WebFilter("/signIn")
-public class FilterSignIn implements Filter {
+public class FilterSign implements Filter {
 
     /**
      * Default constructor. 
      */
-    public FilterSignIn() {
+    public FilterSign() {
     }
 
 	/**
@@ -36,14 +36,16 @@ public class FilterSignIn implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		String nombre = (String) request.getAttribute("nombre");
+		String nombre = (String) request.getParameter("nombre");
 		Connection conn = (Connection) request.getServletContext().getAttribute("dbConn");
 		Statement stm;
 		try {
 			stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery("select * from users where nombre = '" + nombre + "'");
-			if(rs.next()) {
-				request.setAttribute("incorrect", true);
+			while(rs.next()) {
+				if(rs.getString(2).equals(request.getAttribute("nombre"))) {
+					request.setAttribute("incorrect", true);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,6 +57,7 @@ public class FilterSignIn implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
 	}
 
 }

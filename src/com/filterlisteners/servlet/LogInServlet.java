@@ -2,7 +2,6 @@ package com.filterlisteners.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UserServlet
  */
-@WebServlet("/login")
+@WebServlet("/logIn")
 public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,23 +40,24 @@ public class LogInServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("jsp/register.jsp");
-		if ((boolean) request.getAttribute("incorrect")) {
-			String nombre = (String) request.getAttribute("nombre");
-			String password = (String) request.getAttribute("password");
+		RequestDispatcher rd = request.getRequestDispatcher("jsp/registered.jsp");
+		
+		if (request.getAttribute("incorrect") == null) {
+			String nombre = (String) request.getParameter("nombre");
+			String password = (String) request.getParameter("password");
 			Connection conn = (Connection) request.getServletContext().getAttribute("dbConn");
 			Statement stm;
 			try {
 				stm = conn.createStatement();
-				stm.executeUpdate("insert into users ('nombre', 'password', 'actual_session') values "
-						+ "('" + nombre + "', '" + password + "', null)");
+				stm.executeUpdate("insert into users (nombre, password, actual_session) values "
+						+ "('" + nombre + "', '" + password + "', '')");
 				request.getSession().setAttribute("nombre", nombre);
 				rd.forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			response.sendRedirect("");
+			response.sendRedirect("/PruebaFiltrosListeners");
 		}
 	}
 

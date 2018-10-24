@@ -2,7 +2,7 @@
     <wb-module deploy-name="FiltersListeners">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="FiltersListeners"/>
         <property name="java-output-path" value="/FiltersListeners/build/classes"/>
+        <property name="context-root" value="PruebaFiltrosListeners"/>
     </wb-module>
 </project-modules>

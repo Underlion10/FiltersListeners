@@ -33,8 +33,8 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     	Statement stm;
 		try {
 			stm = conn.createStatement();
-			stm.executeUpdate("update users set actual_session = " + 
-			se.getSession().getId() + " where username = " + username);
+			stm.executeUpdate("update users set actual_session = '" + 
+			se.getSession().getId() + "' where nombre = '" + username + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +49,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     	Statement stm;
 		try {
 			stm = conn.createStatement();
-			stm.executeUpdate("update users set actual_session = null" + " where username = " + username);
+			stm.executeUpdate("update users set actual_session = ''" + " where username = '" + username + "'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
